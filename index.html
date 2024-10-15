@@ -1,3 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Redirect</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            font-size: 2rem;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .countdown-container {
+            text-align: center;
+        }
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6f61;
+        }
+    </style>
+</head>
 <body>
-<a href="https://www.youtube.com/redirect?q=https://www.xbox.com/en-us/play">XBOX</a>
+    <div class="countdown-container">
+        <p>Redirecting in <span class="countdown">5</span> seconds...</p>
+    </div>
+    <script>
+        let countdown = 5;
+        let tapCount = 0;
+        const countdownElement = document.querySelector(".countdown");
+        const interval = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            if (countdown === 0) {
+                clearInterval(interval);
+                window.location.href = "https://www.youtube.com/redirect?q=https://www.xbox.com/en-us/play";
+            }
+        }, 1000);
+        document.body.addEventListener("click", () => {
+            tapCount++;
+            if (tapCount === 3) {
+                clearInterval(interval);
+            }
+        });
+    </script>
 </body>
+</html>
